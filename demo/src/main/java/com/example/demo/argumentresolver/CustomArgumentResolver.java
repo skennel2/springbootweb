@@ -16,12 +16,13 @@ public class CustomArgumentResolver implements HandlerMethodArgumentResolver {
 	
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
-		return parameter.getParameterType().equals(ArgumentModel.class);
+		return ArgumentModel.class.isAssignableFrom(parameter.getParameterType());
 	}
 
 	@Override
 	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
 			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+		
 		ArgumentModel model = new ArgumentModel();
 		model.setClientIp("127.0.0.1");
 		model.setClientName(this.testComponent.getValue());
